@@ -1,0 +1,32 @@
+name: Release
+
+# Runs when you push a version tag: git tag v1.0.0 && git push origin v1.0.0
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: macos-14   # Apple Silicon runner, Xcode 15+
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: swift build -c release
+
+      - name: Bundle .app
+        run: |
+          mkdir -p ScreenFlow.app/Contents/MacOS
+          mkdir -p ScreenFlow.app/Contents/Resources
+          cp .build/release/ScreenFlow ScreenFlow.app/Contents/MacOS/ScreenFlow
+          cp Sources/ScreenFlowApp/Resources/Info.plist ScreenFlow.app/Contents/Info.plist
+
+      - name: Zip
+        run: zip -r ScreenFlow.zip ScreenFlow.app
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ScreenFlow.zip
+          generate_release_notes: true

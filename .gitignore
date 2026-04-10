@@ -1,0 +1,12 @@
+.build/
+.build-direct/
+*.app
+*.xcodeproj
+.swiftpm/
+.DS_Store
+*.o
+*.a
+*.swiftmodule
+*.swiftdoc
+*.swiftsourceinfo
+.xcrun-shim/

@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             if ClipboardManager.copy(screenshot: screenshot) {
                 self?.flashIcon()
             }
+            FloatingThumbnailPanel.show(for: screenshot)
         }
 
         watcher.start()

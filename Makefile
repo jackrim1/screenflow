@@ -19,7 +19,8 @@ APP_SRCS = \
   Sources/ScreenFlowApp/AppDelegate.swift \
   Sources/ScreenFlowApp/PopoverView.swift \
   Sources/ScreenFlowApp/GalleryWindowController.swift \
-  Sources/ScreenFlowApp/GalleryView.swift
+  Sources/ScreenFlowApp/GalleryView.swift \
+  Sources/ScreenFlowApp/FloatingThumbnailPanel.swift
 
 CTL_SRCS = Sources/screenflowctl/main.swift
 

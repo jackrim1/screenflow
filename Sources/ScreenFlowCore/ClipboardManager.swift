@@ -9,7 +9,10 @@ public enum ClipboardManager {
         guard let image = NSImage(contentsOf: url) else { return false }
         let pb = NSPasteboard.general
         pb.clearContents()
-        return pb.writeObjects([image])
+        // Write both the image data and the file URL so receiving apps can use
+        // whichever they support. Apps that reject pasted image data (e.g. some
+        // web UIs) will often accept a file URL and treat it like a drag-and-drop.
+        return pb.writeObjects([image, url as NSURL])
     }
 
     public static func hasImage() -> Bool {
